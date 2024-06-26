@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ExpenseContext } from "./ExpenseContext";
 
-const ExpenseList = ({ expenses ,removeExpenses}) => {
+const ExpenseList = () => {
+
+  const {expenses,removeExpense} = useContext(ExpenseContext)
   const handleRemove = (index) => {
-      removeExpenses(index)
+      removeExpense(index)
   };
   return (
     <div>

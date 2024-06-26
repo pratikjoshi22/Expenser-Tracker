@@ -1,8 +1,13 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
+import { useContext } from "react";
+import { ExpenseContext } from "./ExpenseContext";
 
-const ExpenseChart = ({ expenses }) => {
+const ExpenseChart = () => {
+
+  const {expenses} = useContext(ExpenseContext)
+  
   Chart.register(ArcElement, Tooltip, Legend);
 
   const categories = [...new Set(expenses.map((expense) => expense.category))];

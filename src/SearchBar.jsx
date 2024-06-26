@@ -1,22 +1,36 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { ExpenseContext } from './ExpenseContext';
 
-const SearchBar = ({ addExpense }) => {
+const SearchBar = () => {
+
+  const {addExpense} = useContext(ExpenseContext)
   const [title, setTitle] = useState('');
   const [amount, setAmount] = useState('');
   const [category, setCategory] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const expense = {
-      title,
-      amount: parseFloat(amount),
-      category,
-      date: new Date(),
-    };
-    addExpense(expense);
-    setTitle('');
-    setAmount('');
-    setCategory('');
+    
+    const expenseAmount = parseFloat(amount)
+      if(expenseAmount > 0)
+      {
+        const expense = {
+          title,
+          amount: expenseAmount,
+          category,
+          date: new Date(),
+        };
+        addExpense(expense);
+        setTitle('');
+        setAmount('');
+        setCategory('');
+
+      }
+      else{
+        alert("Amount should be greater than 0");
+      }
+    
+    
   };
 
   return (
